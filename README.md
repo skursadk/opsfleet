@@ -1,5 +1,9 @@
 # How to use
-
+This terraform project uses an S3 backend to keep the statefile and DynamoDB for locking mechanism. Although its simpler to run with a local state file, remote state should be used to ease colloboration on the project
+- Create S3 Bucket to store remote state and update `backend.tf` file accordingly
+- Create DynamoDB Table with the same name in `backend.tf` file
+    - It has to have `LockID` as `partitionKey`
+    - Its better to create  `on-demand`
 - Set variables (mandatory)
     - vpc_id : ID of existing vpc
     - private_subnets : List of Private Subnets in the vpc
