@@ -1,6 +1,6 @@
 ### MANDATORY PARAMS ###
 variable "vpc_id" {
-  type = string
+  type        = string
 }
 variable "private_subnets" {
   description = "Private subnets CIDR list"

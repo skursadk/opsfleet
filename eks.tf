@@ -1,15 +1,15 @@
 data "aws_caller_identity" "current" {}
 
 locals {
-  account_id = data.aws_caller_identity.current.account_id
+  account_id       = data.aws_caller_identity.current.account_id
   cluster_name     = "opsfleet-eks"
   cluster_version  = "1.28"
 
   tags = {
     Environment = "dev"
-    Example    = local.cluster_name
-    GithubRepo = "skursadk/opsfleet"
-    Terraform  = "sk-tf-states/opsfleet/eks"
+    Example     = local.cluster_name
+    GithubRepo  = "skursadk/opsfleet"
+    Terraform   = "sk-tf-states/opsfleet/eks"
   }
 }
 
@@ -17,7 +17,7 @@ provider "aws" {
   profile = "personal-profile"
   region  = "us-east-1"
   default_tags {
-    tags = local.tags
+    tags  = local.tags
   }
 }
 
@@ -29,7 +29,7 @@ provider "kubernetes" {
     api_version = "client.authentication.k8s.io/v1beta1"
     command     = "aws"
     # This requires the awscli to be installed locally where Terraform is executed
-    args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
   }
 }
 
