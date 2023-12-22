@@ -1,18 +1,18 @@
-module "dev_irsa" {
-  version = "4.24.1"
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
+# module "dev_irsa" {
+#   version = "4.24.1"
+#   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
 
-  create_role      = true
-  role_name_prefix = "DevIRSA"
+#   create_role      = true
+#   role_name_prefix = "DevIRSA"
 
-  provider_url = module.eks.cluster_oidc_issuer_url
-  role_policy_arns = [
-    aws_iam_policy.dev_irsa_policy.arn
-  ]
+#   provider_url = module.eks.cluster_oidc_issuer_url
+#   role_policy_arns = [
+#     aws_iam_policy.dev_irsa_policy.arn
+#   ]
 
-  oidc_fully_qualified_subjects  = ["system:serviceaccount:default:dev-sa"]
-  oidc_fully_qualified_audiences = ["sts.amazonaws.com"]
-}
+#   oidc_fully_qualified_subjects  = ["system:serviceaccount:default:dev-sa"]
+#   oidc_fully_qualified_audiences = ["sts.amazonaws.com"]
+# }
 
 data "aws_iam_policy_document" "dev_policy" {
   statement {
